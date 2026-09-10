@@ -3,6 +3,7 @@ package com.electrostore.pedidos.controller;
 import com.electrostore.pedidos.dto.PedidoRequestDTO;
 import com.electrostore.pedidos.entity.Pedido;
 import com.electrostore.pedidos.service.ElectroStoreService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class PedidoController {
     private ElectroStoreService service;
 
     @PostMapping
-    public ResponseEntity<Pedido> crearPedido(@RequestBody PedidoRequestDTO request) {
+    public ResponseEntity<Pedido> crearPedido(@Valid @RequestBody PedidoRequestDTO request) {
         Pedido nuevoPedido = service.crearPedido(request);
         return new ResponseEntity<>(nuevoPedido, HttpStatus.CREATED);
     }
